@@ -2,7 +2,6 @@ from PIL import Image
 import re
 import cv2
 import pytesseract
-from matplotlib import pyplot as plt
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -15,6 +14,7 @@ dimensions = slika.shape
 height = slika.shape[0]
 cropy = height / 2.5
 cropy1 = height - height / 4
+ycrop = height / 4
 cropped = slika[int(cropy):int(cropy1)]
 
 cv2.imwrite("Cropped_" + pic, cropped)
@@ -28,8 +28,8 @@ text = remove_lower(text)
 print(text)
 
 im = Image.open(pic)
-x = 30
-y = 360
+x = 10
+y = ycrop
 
 pix = im.load()
 rgb = pix[x, y]
